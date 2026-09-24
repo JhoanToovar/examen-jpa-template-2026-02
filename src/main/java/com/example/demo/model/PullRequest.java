@@ -42,5 +42,5 @@ public class PullRequest {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
-    private User author;
+    private User owner;
 }

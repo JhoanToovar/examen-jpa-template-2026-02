@@ -37,10 +37,10 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "owner")
-    private List<PullRequest> ownedRepositories;
+    private List<Repository> ownedRepositories;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "owner")
     private List<PullRequest> authoredPullRequests;
 
     @JsonIgnore
