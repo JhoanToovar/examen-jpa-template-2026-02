@@ -14,7 +14,7 @@ INSERT INTO users (id, username, email, full_name, role) VALUES
 (9, 'mguerrero', 'mguerrero@u.icesi.edu.co', 'Mateo Guerrero', 'STUDENT'),
 (10, 'srestrepo', 'srestrepo@u.icesi.edu.co', 'Sofia Restrepo', 'STUDENT');
 
-INSERT INTO classrooms (id, name, course_code, semeste, teacher_id) VALUES
+INSERT INTO classrooms (id, name, course_code, semester, teacher_id) VALUES
                                                              (1, 'Computacion en Internet II - Grupo 1', 'CI-2026-G1', '2026-02', 1),
                                                              (2, 'Computacion en Internet II - Grupo 2', 'CI-2026-G2', '2026-02', 2),
                                                              (3, 'Arquitectura de Software - Grupo 1', 'AS-2026-G1', '2026-02', 1),

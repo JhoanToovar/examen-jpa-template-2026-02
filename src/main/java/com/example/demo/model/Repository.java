@@ -50,5 +50,9 @@ public class Repository {
     @JsonIgnore
     private List<Repository> repositories;
 
+    @OneToMany(mappedBy = "repository")
+    @JsonIgnore
+    private List<PullRequest> pullRequests;
+
 
 }

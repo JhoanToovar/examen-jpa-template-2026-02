@@ -21,4 +21,14 @@ public class PullRequestController {
     public List<PullRequest> findAllPullRequests() {
         return pullRequestRepository.findAll();
     }
+
+    @GetMapping("/e1")
+    public List<PullRequest> e1(){
+        return pullRequestRepository.findByReviewer_Classrooms_NameAndStatusOrderByCreatedAtDesc("Computacion en Internet II - Grupo 1", "OPEN");
+    }
+
+    @GetMapping("/e3")
+    public List<PullRequest> e3(){
+        return pullRequestRepository.findByReviewer_RoleEqualsAndOwner_UsernameEqualsAndRepository_Assignment_Classroom_SemesterEquals("TA", "cjimenez", "2026-02");
+    }
 }
