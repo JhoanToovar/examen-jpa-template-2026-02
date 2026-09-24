@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,27 +17,27 @@ import java.util.List;
 public class Assignment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long deadline;
+    @Column(name ="id")
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT")
-    private String id2;
+    @Column(name = "description", nullable = false)
+    private String description;
 
-    @Column(nullable = false, unique = true)
-    private Timestamp id;
+    @Column(name = "deadline", nullable = false, unique = true)
+    private Timestamp deadline;
 
     @Column(name = "max_score", nullable = false)
     private Integer maxScore;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "classroom_id")
     private Classroom classroom;
 
+
+    @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
     @JsonIgnore
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
-    private Repository repositories;
+    private List<Repository> repositories;
 }

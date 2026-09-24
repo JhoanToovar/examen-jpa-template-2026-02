@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 @RestController
 @RequestMapping("/repositories")
 @RequiredArgsConstructor
 public class RepositoryController {
-
+    @Autowired
     private final IRepositoryRepository repositoryRepository;
 
     @GetMapping

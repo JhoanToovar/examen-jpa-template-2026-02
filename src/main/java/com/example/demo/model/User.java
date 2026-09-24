@@ -1,10 +1,15 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
-import lombok.*;
 
+import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -14,33 +19,39 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @GeneratedValue()
+    @Id
+    @Column(name ="id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "full_name", nullable = false)
+    @Column(name = "role", nullable = false)
     private String role;
 
-    @Column(nullable = false)
+    @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
-    private List<Classroom> ownedRepositories;
+    @JsonIgnore
+    @OneToMany(mappedBy = "owner")
+    private List<PullRequest> ownedRepositories;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private List<PullRequest> taughtRepositories;
-
-    @ManyToOne(mappedBy = "author", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "author")
     private List<PullRequest> authoredPullRequests;
 
-    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "reviewer")
     private List<PullRequest> reviewedPullRequests;
 
-    @ManyToOne(mappedBy = "commits", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "author")
     private List<Commit> commits;
+
+    @OneToMany(mappedBy = "teacher")
+    @JsonIgnore
+    private List<Classroom> classrooms;
 }
